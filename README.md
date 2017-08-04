@@ -3,7 +3,7 @@ Express node server with easy routing
 
 [Express](https://expressjs.com/) is the most popular nodejs framwork for building fast and minimalistic applications.
 
-Why not make the routing better just by relaying in the folder strucure?
+Why not make the routing better just by relaying in the folder structure?
 
 ## Installation
 
