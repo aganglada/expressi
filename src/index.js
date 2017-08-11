@@ -1,8 +1,11 @@
 import express from 'express'
 import path from 'path'
-import router from './router'
+import router from './services/router'
+import logger from './services/logger'
 
 const app = express()
+
+app.use(logger)
 
 export default (dir, cb) => {
   if (typeof dir === 'function') {

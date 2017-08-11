@@ -1,6 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 import chalk from 'chalk'
+import emoji from 'node-emoji'
 
 const indexFile = '/index'
 
@@ -45,9 +46,7 @@ const parseRoutes = ({ location, files }) => {
       route = route.replace('.', '/:')
     }
 
-
-
-    console.log(chalk.blue(route))
+    console.log(`${emoji.get('white_check_mark')}  ${chalk.blue(route)}`)
 
     return {
       file,
@@ -67,13 +66,13 @@ export default (app, location, callback) => {
     throw new Error(`Cannot find routes folder specified (${location})`);
   }
 
-  console.log(chalk.green('ROUTES'))
-  console.log(chalk.green('----------------'))
+  console.log(chalk.white.bgGreen('\n  ROUTES  \n'))
 
-    getRoutes(location)
-      .then(parseRoutes)
-      .then((routes) => {
-        attachRouteToExpress(app, routes)
-      })
-      .then(() => callback(app))
+  getRoutes(location)
+    .then(parseRoutes)
+    .then((routes) => attachRouteToExpress(app, routes))
+    .then(() => {
+      console.log(chalk.bgBlue.white(`\n  Expressi running ${emoji.get('rocket')}  \n`))
+      callback(app)
+    })
 }
